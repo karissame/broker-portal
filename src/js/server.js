@@ -17,17 +17,39 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 // define the folder that will be used for static assets
-// app.use(Express.static('static'));
-app.use(Express.static(path.join(__dirname, 'static')));
+app.use(Express.static('static'));
 app.use(bodyParser.json({limit:'50mb'}));
 app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
+var today = new Date();
 const connection = require('./dbconfig');
 var knex = require('knex')({
   client: 'mssql',
-  connection: connection});
+  connection:{
+      host : connection.default.host,
+      user : connection.default.user,
+      password : connection.default.password,
+      database : connection.default.database
+  }
+});
 
 app.get('/currentRates', (req, res) => {
-    return res.send('rates');
+    knex.withSchema('BrokerPortal').select('LineID','Utility','PremiseType','Profile','AnnualUsageLowerBound','AnnualUsageUpperBound', 'StartDate','ContractLength','ContractRate').from('RateListCumulative').where({
+        IsDeleted:0
+    })
+    // console.log(query.toString());
+    //Above query gives
+    //select * from [BrokerPortal].[RateListCumulative] where [IsDeleted] = 0
+    .asCallback(function(err,results) {
+      if (err)    {
+          console.log("error retrieving rates");
+          res.send({success:false,message:err.message});
+          }
+      else{
+          console.log("Got column response as ",results);
+          var rates = results;
+          return res.send(rates);
+          }
+    });
 });
 // universal routing and rendering
 app.get('*', (req, res) => {

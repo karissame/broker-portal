@@ -130,7 +130,7 @@ CREATE TABLE BrokerPortal.RateListCumulative
    ,Profile varchar(20) NOT NULL
    ,AnnualUsageLowerBound int NOT NULL  --Luke has one range like 0 - 50,000. Note to self: split during csv read.
    ,AnnualUsageUpperBound int NOT NULL
-   ,StartDate DATETIME
+   ,StartDate DATETIME NOT NULL
    --,ContractLength3MonthRate decimal(10,9) NOT NULL
    --,ContractLength6MonthRate decimal(10,9) NOT NULL
    --,ContractLength12MonthRate decimal(10,9) NOT NULL
