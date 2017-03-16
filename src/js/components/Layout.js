@@ -12,7 +12,7 @@ import Navigation from "./Navigation";
         todos:store.todos.todos
     }
 })
-export default class TodoApp extends React.Component {
+export default class Layout extends React.Component {
   componentWillMount(){
     //   console.log("Mounting:",this.props.user);
       this.props.dispatch(user.readUser());

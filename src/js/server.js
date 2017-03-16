@@ -8,6 +8,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 import routes from './routes';
 import NotFoundPage from './pages/NotFound';
+const bodyParser = require('body-parser');
 
 // initialize the server and configure support for ejs templates
 const app = new Express();
@@ -16,10 +17,17 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 // define the folder that will be used for static assets
-app.use(Express.static('static'));
+// app.use(Express.static('static'));
+app.use(Express.static(path.join(__dirname, 'static')));
+app.use(bodyParser.json({limit:'50mb'}));
+app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
+const connection = require('./dbconfig');
+var knex = require('knex')({
+  client: 'mssql',
+  connection: connection});
 
-app.get('/demo', (req, res) => {
-    return res.send('demo');
+app.get('/currentRates', (req, res) => {
+    return res.send('rates');
 });
 // universal routing and rendering
 app.get('*', (req, res) => {
