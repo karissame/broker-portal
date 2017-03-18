@@ -3,7 +3,9 @@ import TodoList from "./TodoList";
 import { connect } from "react-redux";
 import * as user from "../actions/userActions";
 import * as todo from "../actions/todoActions";
+import * as rates from "../actions/ratesActions";
 import Navigation from "./Navigation";
+import RatesFilteredDisplay from "./RatesFilteredDisplay2";
 
 @connect((store)=>{
     //the return becomes props
@@ -15,7 +17,7 @@ import Navigation from "./Navigation";
 export default class Layout extends React.Component {
   componentWillMount(){
     //   console.log("Mounting:",this.props.user);
-      this.props.dispatch(user.readUser());
+      //this.props.dispatch(user.readUser());
   }
 
   handleSubmit(e){
@@ -30,6 +32,10 @@ export default class Layout extends React.Component {
   loadTodos(){
       this.props.dispatch(todo.readAll());
   }
+  loadRates(){
+      console.log("Fetch Rates button clicked");
+      this.props.dispatch(rates.readAll());
+  }
 
   render() {
     //   console.log(this.props);
@@ -37,12 +43,12 @@ export default class Layout extends React.Component {
     return (
       <div>
         <Navigation />
-        <h3>TODO</h3>
-        <TodoList />
-        <button onClick={this.readUser.bind(this)}>Read User</button>
         <button onClick={this.loadTodos.bind(this)}>Load Todos</button>
-        {/* add this */}
-        {this.props.children}
+        <button onClick={this.loadRates.bind(this)}>Load Rates</button>
+        <div id="main">
+            <RatesFilteredDisplay />
+            <TodoList />
+        </div>
       </div>
     );
   }

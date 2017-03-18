@@ -45,7 +45,7 @@ app.get('/currentRates', (req, res) => {
           res.send({success:false,message:err.message});
           }
       else{
-          console.log("Got column response as ",results);
+          //console.log("Got column response as ",results);
           var rates = results;
           return res.send(rates);
           }
