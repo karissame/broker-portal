@@ -6,7 +6,7 @@ body {
     /*background-color: blue;*/
 }
 .nav {
-    background-color: #00ade6;
+    background-color: #337ab7;
     width: 100%;
     height: 85px;
     margin: 0;
@@ -36,4 +36,59 @@ a, a:visited, a:hover, a:active {
 #main {
     display:flex;
     flex-direction:row;
+}
+
+/* Form styling */
+
+.field {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+label {
+  display: block;
+  font-size: 0.8rem;
+  line-height: 1.4rem;
+  font-weight: 600;
+  color: darken(#CDCDCD, 20%);
+}
+
+input {
+  appearance: none;
+  border: 1px solid #CDCDCD;
+  font-size: 1rem;
+  padding: 0.5rem;
+
+  &:focus {
+    outline: 2px solid #337ab7;
+  }
+}
+
+.form button {
+  appearance: none;
+  padding: 1rem 2rem;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  background: #337ab7;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  margin: 0.5rem 0;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+/**, *:before, *:after {
+  box-sizing: border-box;
+  position: relative;
+}*/
+
+
+body, html {
+  font-size: 16px;
+  height: 100%;
+  width: 100%;
+  margin: 0;
 }

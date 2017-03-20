@@ -45,6 +45,15 @@ CREATE TABLE BrokerPortal.Prospects
    ,ContactTitle varchar(20) NOT NULL
    ,ContactPhone varchar(20)
    ,ContactFax varchar(20)
+   ,ContactFirstName varchar(50) NOT NULL
+   ,ContactLastName varchar(50) NOT NULL
+   --need to add these fields
+       ,ContactAddressLine1 varchar(100) NOT NULL
+       ,ContactAddressLine2 varchar(20)
+       ,ContactAddressCity varchar(50) NOT NULL
+       ,ContactAddressState varchar(2) NOT NULL
+       ,ContactAddressZip varchar(5) NOT NULL
+   --end of addiional fields
    ,BillingFirstName varchar(50) NOT NULL
    ,BillingLastName varchar(50) NOT NULL
    ,BillingAddressLine1 varchar(100) NOT NULL

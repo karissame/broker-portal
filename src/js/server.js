@@ -51,6 +51,23 @@ app.get('/currentRates', (req, res) => {
           }
     });
 });
+
+app.get('/prospects', (req, res) => {
+    console.log(req.body);
+    knex.withSchema('BrokerPortal').select('ProspectID','ProspectEntityName').from('Prospects')
+    //where BrokerID in BrokerProspect
+    .asCallback(function(err,results) {
+      if (err)    {
+          console.log("error retrieving prospects");
+          res.send({success:false,message:err.message});
+          }
+      else{
+          console.log("Query executed successfully");
+          var prospects = results;
+          return res.send(prospects);
+          }
+      });
+});
 // universal routing and rendering
 app.get('*', (req, res) => {
   match(
