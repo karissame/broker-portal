@@ -33,61 +33,92 @@ a, a:visited, a:hover, a:active {
     font-size: 20px;
     margin-bottom: 5px;
 }
+#stepper {
+    position: absolute;
+    right:0;
+    width:200px;
+    clear:left;
+    /*background-color: #FAFAFA;*/
+    -webkit-box-shadow: -2px 2px 4px 0px rgba(110,108,110,1);
+    -moz-box-shadow: -2px 2px 4px 0px rgba(110,108,110,1);
+    box-shadow: -2px 2px 4px 0px rgba(110,108,110,1);
+}
 #main {
     display:flex;
     flex-direction:row;
+    width:100%;
 }
-
+#ratesButton {
+    display: block;
+}
+#rateTable {
+    margin-right:200px;
+    width: calc(100% - 200px) !important;
+    overflow-x:scroll;
+}
+#selector {
+    margin-left: 1rem;
+}
+.step {
+    background-color: #FD7700;
+    width:100%;
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+    text-align: center;
+}
 /* Form styling */
 
 .field {
   display: block;
   margin-bottom: 0.5rem;
+  margin-left: 1rem;
 }
 
 label {
-  display: block;
+  display: block !important;
   font-size: 0.8rem;
   line-height: 1.4rem;
   font-weight: 600;
-  color: darken(#CDCDCD, 20%);
+  color: #3a3a3a;
 }
 
 input {
   appearance: none;
-  border: 1px solid #CDCDCD;
+  background-color: #FAFAFA;
+  border: 1px solid #cdcdcd;
   font-size: 1rem;
   padding: 0.5rem;
-
   &:focus {
     outline: 2px solid #337ab7;
   }
 }
 
-.form button {
+button {
   appearance: none;
   padding: 1rem 2rem;
   text-transform: uppercase;
   font-size: 0.8rem;
   background: #337ab7;
-  color: white;
+  color: white !important;
   border: none;
   border-radius: 3px;
-  margin: 0.5rem 0;
-
+  margin: 1rem !important;
   &:hover {
     opacity: 0.8;
   }
 }
 
-/**, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: border-box;
   position: relative;
-}*/
+}
 
-
-body, html {
-  font-size: 16px;
+body,
+html {
+  font-size: 14px !important;
   height: 100%;
   width: 100%;
   margin: 0;

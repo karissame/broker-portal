@@ -15,7 +15,7 @@ export default class ProspectSelector extends React.Component {
   render() {
     return (
       <div id="selector">
-          <span>Select an Existing Prospect or Start a New One: </span>
+          <span>Select a Prospect or Start New: </span>
           <select onChange={(val) => this.handleChange(val)}>
             {this.props.prospects.map(item => (
               <option key={item.ProspectID}>{item.ProspectEntityName}</option>))

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { Grid, Column, Cell, Pager, Paging } from 'eddyson-react-grid';
+import * as rates from "../actions/ratesActions";
 
 @connect((store)=>{
     //the return becomes props
@@ -10,6 +11,10 @@ import { Grid, Column, Cell, Pager, Paging } from 'eddyson-react-grid';
 })
 
 class RatesFilteredDisplay extends React.Component {
+    loadRates(){
+        console.log("Fetch Rates button clicked");
+        this.props.dispatch(rates.readAll());
+    }
 
     render() {
         var map = this.props.rates.reduce(function(map, rate) {
@@ -27,8 +32,9 @@ class RatesFilteredDisplay extends React.Component {
 
         var result = Object.keys(map).map(function(k) { return this[k] }, map);
        //Console log of rates received (or mapped results) doesn't work. The console log logs undefined and doesn't run again after the props.rates are received but before the re-render of the rate grid stops the log from hitting.
-       if (this.props.rates) {
+       if (this.props.rates[0]) {
        return(
+           <div id="rateTable">
            <Grid objects={result}>
                  <Pager rowsPerPage={20} />
                  <Column name="Utility" label="Utility" />
@@ -43,9 +49,9 @@ class RatesFilteredDisplay extends React.Component {
                  <Column name="24" label="24 Month Rate" />
                  <Column name="LineID" hide={true} />
                  <Column name="id" hide={true} />
-               </Grid>
+               </Grid></div>
        );} else {
-           return(<p>There are no rates to display at this time</p>);
+           return(<div><button id="ratesButton"onClick={this.loadRates.bind(this)}>Load Rates</button></div>);
        }
     };
 }

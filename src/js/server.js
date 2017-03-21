@@ -9,6 +9,7 @@ import store from "./store";
 import routes from './routes';
 import NotFoundPage from './pages/NotFound';
 const bodyParser = require('body-parser');
+import { Field,Control,Form,combineForms } from "react-redux-form";
 
 // initialize the server and configure support for ejs templates
 const app = new Express();

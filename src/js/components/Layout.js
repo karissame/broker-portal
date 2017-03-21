@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import * as rates from "../actions/ratesActions";
 import * as stepper from "../actions/stepperActions";
 import Navigation from "./Navigation";
 import RatesFilteredDisplay from "./RatesFilteredDisplay2";
@@ -21,16 +20,15 @@ export default class Layout extends React.Component {
       e.preventDefault();
   }
 
-  loadRates(){
-      console.log("Fetch Rates button clicked");
-      this.props.dispatch(rates.readAll());
-  }
+  // loadRates(){
+  //     console.log("Fetch Rates button clicked");
+  //     this.props.dispatch(rates.readAll());
+  // }
 
   render() {
     return (
       <div>
         <Navigation />
-        <button onClick={this.loadRates.bind(this)}>Load Rates</button>
         <div id="main">
             <RatesFilteredDisplay />
             <QuoteStepper />

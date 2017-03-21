@@ -17,6 +17,7 @@ export default class QuoteStepper extends React.Component {
         case 0:
             return (
               <div id="stepper">
+                <div className="step">START A QUOTE</div>
                 <ProspectSelector />
                 <NewProspectForm />
               </div>
@@ -24,12 +25,14 @@ export default class QuoteStepper extends React.Component {
         case 1:
             return (
               <div id="stepper">
+                <div className="step">ADD METERS</div>
                 <NewProspectMeterForm />
               </div>
             );
         default:
             return (
               <div id="stepper">
+                <div className="step">START A QUOTE</div>
                 <ProspectSelector />
                 <NewProspectForm />
               </div>

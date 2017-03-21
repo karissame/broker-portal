@@ -1,11 +1,9 @@
 import { combineReducers } from "redux";
-import userReducer from "./UserReducer";
-import todoReducer from "./TodoReducer";
 import rateReducer from "./RateReducer";
 import stepperReducer from "./StepperReducer";
 import quoteReducer from "./QuoteReducer";
-// import combineForms from 'react-redux-form';
-const initialProspect = {};
+import { combineForms } from 'react-redux-form';
+const initialProspectState = {};
 export default combineReducers({
-    user:userReducer,todos:todoReducer,rates:rateReducer,prospects:stepperReducer,quote:quoteReducer
+    rates:rateReducer,prospects:stepperReducer,quote:quoteReducer,forms:combineForms({prospect:initialProspectState})
 });
