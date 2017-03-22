@@ -47,13 +47,11 @@ CREATE TABLE BrokerPortal.Prospects
    ,ContactFax varchar(20)
    ,ContactFirstName varchar(50) NOT NULL
    ,ContactLastName varchar(50) NOT NULL
-   --need to add these fields
-       ,ContactAddressLine1 varchar(100) NOT NULL
-       ,ContactAddressLine2 varchar(20)
-       ,ContactAddressCity varchar(50) NOT NULL
-       ,ContactAddressState varchar(2) NOT NULL
-       ,ContactAddressZip varchar(5) NOT NULL
-   --end of addiional fields
+   ,ContactAddressLine1 varchar(100) NOT NULL
+   ,ContactAddressLine2 varchar(20)
+   ,ContactAddressCity varchar(50) NOT NULL
+   ,ContactAddressState varchar(2) NOT NULL
+   ,ContactAddressZip varchar(5) NOT NULL
    ,BillingFirstName varchar(50) NOT NULL
    ,BillingLastName varchar(50) NOT NULL
    ,BillingAddressLine1 varchar(100) NOT NULL

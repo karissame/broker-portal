@@ -54,7 +54,7 @@ app.get('/currentRates', (req, res) => {
 });
 
 app.get('/prospects', (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     knex.withSchema('BrokerPortal').select('ProspectID','ProspectEntityName').from('Prospects')
     //where BrokerID in BrokerProspect
     .asCallback(function(err,results) {
@@ -67,6 +67,33 @@ app.get('/prospects', (req, res) => {
           var prospects = results;
           return res.send(prospects);
           }
+      });
+});
+
+app.post("/submitProspect", (req, res) => {
+    console.log("In server now.");
+    console.log("Req.body");
+    console.log(req.body);
+    console.log("logging original and edited prospects next");
+    var prospect = req.body;
+    console.log(prospect);
+    prospect.CreatedBy = 'TestValueFrom NewProspectForm';
+    console.log(prospect);
+    knex.withSchema('BrokerPortal').insert(prospect).into('Prospects').returning('ProspectID')
+    .asCallback(function(err,results) {
+      if (err)    {
+          console.log("error adding prospect");
+          res.send({success:false,message:err.message});
+          }
+      else{
+          console.log("Query executed successfully");
+          var prospectID = results;
+          console.log("prospect ID returned",prospectID);
+          if (typeof prospectID === "undefined") {
+              return res.send({success:false,message:"Unable to insert- check validity of data submited"});
+          } else {
+          return res.send({success:true,prospectID:prospectID});
+        }}
       });
 });
 // universal routing and rendering

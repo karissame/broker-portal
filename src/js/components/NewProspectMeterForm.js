@@ -3,11 +3,18 @@ import { connect} from "react-redux";
 import { Control, Form } from 'react-redux-form';
 
 class NewProspectMeterForm extends React.Component {
-  handleSubmit() {
+  handleSubmit(e) {
     // Do anything you want with the form value
     //If meter account exists, disallow.
     console.log("submitted prospect meter");
     console.log(this.props.ProspectMeters);
+    this.props.dispatch(stepper.setProspect(val));
+  }
+  nextHandler(e) {
+    //If meter account exists, disallow.
+    console.log("done submitting prospect meters");
+    console.log(this.props.ProspectMeters);
+    this.props.dispatch(stepper.setProspect(val));
   }
 
   render() {
@@ -54,6 +61,7 @@ class NewProspectMeterForm extends React.Component {
         <Control.text model=".Utility" />
         </div>
         <button type="submit">Add Meter</button>
+        <button type="next" onClick={() => this.nextHandler()}>Finish Quote</button>
       </Form>
     );
   }

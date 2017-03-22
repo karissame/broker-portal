@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect} from "react-redux";
 import { Field, Control, Form, CombineForms } from 'react-redux-form';
+import * as dbActions from "../actions/dbActions";
 
 @connect((store)=>{
     //the return becomes props
@@ -14,7 +15,9 @@ class NewProspectForm extends React.Component {
     // Do anything you want with the form value
     // if exists same fed or DUNS number, disallow
     //add brokerid and prospect id into linking table after save.
-    console.log(this.props.prospect);
+    var prospect = this.props.prospect;
+    // console.log(prospect);
+    this.props.dispatch(dbActions.postProspect(prospect));
   }
 
   render() {

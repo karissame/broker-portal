@@ -16,6 +16,12 @@ export default function(state={prospects:[]},action){
             // newState = { ...state};
             break;
         }
+        case "PROSPECT_INSERT_FAILED": {
+            alert("Prospect could not be saved. Please ensure all fields are filled out correctly and try again");
+            console.log(action);
+            // newState = { ...state};
+            break;
+        }
         case "PROSPECT_LOADED": {
             var selected = action.payload;
             console.log('in stepper reducer. selected prospect:');
