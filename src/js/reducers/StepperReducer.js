@@ -18,6 +18,8 @@ export default function(state={prospects:[]},action){
         }
         case "PROSPECT_LOADED": {
             var selected = action.payload;
+            console.log('in stepper reducer. selected prospect:');
+            console.log(selected);
             newState = { ...state, selected:selected };
             break;
         }

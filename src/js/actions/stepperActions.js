@@ -20,7 +20,8 @@ export function getIDs(){
 export function setProspect(id){
     console.log("in reducer. setting prospect");
     return function(dispatch) {
-      dispatch({type: "PROSPECT_LOADED", payload: id})
+      dispatch({type: "PROSPECT_LOADED", payload: id}),
+      dispatch({type: "INCREMENT_STEP", payload: 1})
     }
 }
 
