@@ -11,10 +11,7 @@ export function postProspect(prospect){
       .then((response) => {
           console.log("Received response from server: ",response.data);
           if (response.data.success) {
-              dispatch(
-                  {type: "PROSPECT_LOADED", payload: response.data},
-                  {type: "INCREMENT_STEP", payload: 1},
-              )
+              dispatch([{type: "PROSPECT_LOADED", payload: response.data.prospectID},{type: "INCREMENT_STEP", payload: 1}])
           } else {
               dispatch(
                   {type: "PROSPECT_INSERT_FAILED", payload: response.data}

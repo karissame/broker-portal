@@ -88,11 +88,11 @@ app.post("/submitProspect", (req, res) => {
       else{
           console.log("Query executed successfully");
           var prospectID = results;
-          console.log("prospect ID returned",prospectID);
+          console.log("prospect ID returned",prospectID[0]);
           if (typeof prospectID === "undefined") {
               return res.send({success:false,message:"Unable to insert- check validity of data submited"});
           } else {
-          return res.send({success:true,prospectID:prospectID});
+          return res.send({success:true,prospectID:prospectID[0]});
         }}
       });
 });

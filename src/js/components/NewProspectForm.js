@@ -96,7 +96,7 @@ class NewProspectForm extends React.Component {
         <Control.text model=".BillingAddressZip" />
         </div>
         <div className="field">
-        <label>Federal Tax D</label>
+        <label>Federal Tax ID</label>
         <Control.text model=".FederalTaxID" />
         </div>
         <div className="field">
