@@ -45,8 +45,6 @@ CREATE TABLE BrokerPortal.Prospects
    ,ContactTitle varchar(20) NOT NULL
    ,ContactPhone varchar(20)
    ,ContactFax varchar(20)
-   ,ContactFirstName varchar(50) NOT NULL
-   ,ContactLastName varchar(50) NOT NULL
    ,ContactAddressLine1 varchar(100) NOT NULL
    ,ContactAddressLine2 varchar(20)
    ,ContactAddressCity varchar(50) NOT NULL
