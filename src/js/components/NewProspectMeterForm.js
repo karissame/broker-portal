@@ -1,25 +1,57 @@
 import React from 'react';
 import { connect} from "react-redux";
-import { Control, Form } from 'react-redux-form';
+import { Field, Control, Form, CombineForms, modelReducer, actions } from 'react-redux-form';
+import * as dbActions from "../actions/dbActions";
 
+
+@connect((store)=>{
+    //the return becomes props
+    return {
+        ProspectMeters:store.forms.prospectMeters,
+        FormStatus:store.forms.forms.prospectMeters.$form
+    }
+})
 class NewProspectMeterForm extends React.Component {
-  handleSubmit(e) {
+  ComponentDidMount() {
+      console.log("meter form is mounted.");
+      this.props.dispatch(actions.setPending('prospectMeters', true));
+  }
+  handleSubmit() {
     // Do anything you want with the form value
     //If meter account exists, disallow.
+    console.log("in NewProspectMeterForm. logging AnnualUsage");
+    var meter =this.props.ProspectMeters;
+    console.log(meter.AnnualUsage);
     console.log("submitted prospect meter");
-    console.log(this.props.ProspectMeters);
-    this.props.dispatch(stepper.setProspect(val));
+    // console.log(meter);
+    this.props.dispatch(dbActions.postProspectMeter(meter));
+    console.log("posted meter. About to send reset form action");
+    do {
+        console.log("In formstatus loop. logging form status then .pending");
+        console.log(this.props.FormStatus);
+        if (this.props.FormStatus.submitted && this.props.FormStatus.submitFailed =="false") {
+            this.props.dispatch(dbActions.resetProspectMeter());
+        } else if (this.props.FormStatus.submitFailed) {
+            break;
+        }
+    } while (this.props.FormStatus.pending);
+
   }
   nextHandler(e) {
     //If meter account exists, disallow.
     console.log("done submitting prospect meters");
-    console.log(this.props.ProspectMeters);
-    this.props.dispatch(stepper.setProspect(val));
+    if (this.props.ProspectMeters.Utility) {
+        console.log("the form is not empty");
+        var meter =this.props.ProspectMeters;
+        console.log(meter);
+        this.props.dispatch(dbActions.postProspectMeter(meter));
+    }
+    this.props.dispatch(dbActions.nextStep());
   }
 
   render() {
     return (
-      <Form model="ProspectMeters" onSubmit={() => this.handleSubmit()}>
+      <Form model="prospectMeters" onSubmit={() => this.handleSubmit()}>
         <div className="field">
         <label>Meter Account Number</label>
         <Control.text model=".MeterAccountNumber" />
@@ -42,7 +74,7 @@ class NewProspectMeterForm extends React.Component {
         </div>
         <div className="field">
         <label>MeterAddressZip</label>
-        <Control.text model=".ContactAddressZip" />
+        <Control.text model=".MeterAddressZip" />
         </div>
         <div className="field">
         <label>Premise Type</label>

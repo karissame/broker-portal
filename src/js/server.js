@@ -96,6 +96,35 @@ app.post("/submitProspect", (req, res) => {
         }}
       });
 });
+app.post("/submitMeter", (req, res) => {
+    console.log("In server now.");
+    console.log("Req.body");
+    console.log(req.body);
+    console.log("Testing access to store from server");
+    console.log("logging original and edited meter next");
+    var meter = req.body;
+    console.log(meter);
+    //Replace req.session info below
+    meter.ProspectID = 3;
+    meter.CreatedBy = 1;
+    console.log(meter);
+    knex.withSchema('BrokerPortal').insert(meter).into('ProspectMeters').returning('ProspectMeterID')
+    .asCallback(function(err,results) {
+      if (err)    {
+          console.log("error adding meter");
+          res.send({success:false,message:err.message});
+          }
+      else{
+          console.log("Query executed successfully");
+          var ProspectMeterID = results[0];
+          console.log("ProspectMeterID returned",ProspectMeterID);
+          if (typeof ProspectMeterID === "undefined") {
+              return res.send({success:false,message:"Unable to insert- check validity of data submited"});
+          } else {
+          return res.send({success:true,prospectID:ProspectMeterID});
+        }}
+      });
+});
 // universal routing and rendering
 app.get('*', (req, res) => {
   match(

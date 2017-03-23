@@ -16,8 +16,8 @@ export default function(state={prospects:[]},action){
             // newState = { ...state};
             break;
         }
-        case "PROSPECT_INSERT_FAILED": {
-            alert("Prospect could not be saved. Please ensure all fields are filled out correctly and try again");
+        case "INSERT_FAILED": {
+            alert("This entry could not be saved. Please ensure all fields are filled out correctly and try again");
             console.log(action);
             // newState = { ...state};
             break;
