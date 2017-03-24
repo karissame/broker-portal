@@ -7,8 +7,7 @@ export default React.createClass({
         <h1>Vista Broker Portal</h1>
         <ul role="nav">
           <li><Link  onlyActiveOnIndex={true} to="/">Home</Link></li>
-          <li><Link  to="/about">About</Link></li>
-          <li><Link to="/profile">Profile</Link></li>
+          <li><Link  to="/Invoices">Invoices</Link></li>
         </ul>
       </div>
     )

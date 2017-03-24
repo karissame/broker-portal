@@ -27,7 +27,7 @@ export default class Layout extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="outer">
         <Navigation />
         <div id="main">
             <RatesFilteredDisplay />

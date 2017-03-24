@@ -17,7 +17,7 @@ export default class QuoteStepper extends React.Component {
     switch (this.props.quoteProgress) {
         case 0:
             return (
-              <div id="stepper">
+              <div className="stepper">
                 <div className="step">START A QUOTE</div>
                 <ProspectSelector />
                 <NewProspectForm />
@@ -25,21 +25,21 @@ export default class QuoteStepper extends React.Component {
             );
         case 1:
             return (
-              <div id="stepper">
+              <div className="stepper">
                 <div className="step">ADD METERS</div>
                 <NewProspectMeterForm />
               </div>
             );
         case 2:
             return (
-                <div id="stepper">
+                <div className="stepper large">
                   <div className="step">REVIEW QUOTE</div>
                   <QuoteSummary />
                  </div>
             );
         default:
             return (
-              <div id="stepper">
+              <div className="stepper">
                 <div className="step">START A QUOTE</div>
                 <ProspectSelector />
                 <NewProspectForm />

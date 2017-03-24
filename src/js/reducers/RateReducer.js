@@ -1,6 +1,6 @@
 //state is the current state
 //action must have a type, and any value for payload
-export default function(state={rates:[]},action){
+export default function(state={rates:[],notification:''},action){
     var newState = Object.assign(state);
     //action.type is required!
 

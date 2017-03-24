@@ -39,3 +39,7 @@ Query needed items from quote and display in QuoteSummary component
 
 * add select on quote screen to repull quote at various lengths of time.
 * Quotes generated at 24 month hard coded for now
+
+*add meter account number to form and db.
+
+*form validation

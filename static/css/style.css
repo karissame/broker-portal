@@ -5,48 +5,66 @@ body {
     margin:0;
     /*background-color: blue;*/
 }
+#outer {
+    height: 100%;
+}
 .nav {
-    background-color: #337ab7;
+    background-color: #337ab7 !important;
     width: 100%;
     height: 85px;
     margin: 0;
-    padding: 5px;
+    padding: 10px !important;
+    background: url('../img/mixed_logo.png') no-repeat center;
+    background-size: contain;
 }
 .nav li{
     display: inline-block;
     margin-right: 15px;
-    color: white;
+    color: white !important;
     text-shadow: 1px 1px #aaa;
     vertical-align: text-top;
     text-decoration: none;
 }
-a, a:visited, a:hover, a:active {
+.nav a, a:visited, a:hover, a:active {
     text-decoration:none !important;
-    color: white;
+    color: white !important;
 }
 .nav a:hover{
     font-size: 19px;
-    color: aliceblue;
 }
 .nav h1 {
     margin-top: 10px;
     font-size: 20px;
     margin-bottom: 5px;
 }
-#stepper {
+.stepper {
     position: absolute;
     right:0;
+    background-color: white;
+    opacity: .9;
     width:200px;
+    height:100%;
+    overflow-y:scroll;
     clear:left;
     /*background-color: #FAFAFA;*/
     -webkit-box-shadow: -2px 2px 4px 0px rgba(110,108,110,1);
     -moz-box-shadow: -2px 2px 4px 0px rgba(110,108,110,1);
     box-shadow: -2px 2px 4px 0px rgba(110,108,110,1);
 }
+.large {
+    width:600px;
+}
+#app {
+    height:100%;
+}
 #main {
     display:flex;
     flex-direction:row;
     width:100%;
+    height:100%;
+    background-image: url('http://il3.picdn.net/shutterstock/videos/9346376/thumb/1.jpg');
+    background-size: cover;
+
 }
 #ratesButton {
     display: block;
@@ -55,9 +73,19 @@ a, a:visited, a:hover, a:active {
     margin-right:200px;
     width: calc(100% - 200px) !important;
     overflow-x:scroll;
+    background-color:  white;
+    opacity: .8;
+}
+.pagination li{
+    opacity:1;
+    background-color: #FD7700;
 }
 #selector {
     margin-left: 1rem;
+}
+#quote {
+    padding: 10px;
+    font-size: 16px;
 }
 .step {
     background-color: #FD7700;

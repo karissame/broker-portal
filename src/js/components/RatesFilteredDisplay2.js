@@ -6,7 +6,8 @@ import * as rates from "../actions/ratesActions";
 @connect((store)=>{
     //the return becomes props
     return {
-        rates:store.rates.rates
+        rates:store.rates.rates,
+        notification:store.rates.notification
     }
 })
 
@@ -51,7 +52,8 @@ class RatesFilteredDisplay extends React.Component {
                  <Column name="id" hide={true} />
                </Grid></div>
        );} else {
-           return(<div><button id="ratesButton"onClick={this.loadRates.bind(this)}>Load Rates</button></div>);
+           return(<div>
+               <div id="notification">{this.props.notification}</div><button id="ratesButton"onClick={this.loadRates.bind(this)}>Load Rates</button></div>);
        }
     };
 }

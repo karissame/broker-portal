@@ -10,7 +10,7 @@ var knex = require('knex')({
   }
 });
 
-export function quotePrep(prospectID){
+export function quotePrep(prospectID, callback){
     var prospectID = prospectID;
     var quotePieces= {
         prospectDetails:{
@@ -37,7 +37,7 @@ export function quotePrep(prospectID){
           console.log(results);
           quotePieces.meterDetails = results;
           quotePieces.meterDetails.forEach(function(item) {
-              quotePieces.totalUsage += item.AnnualUsage;
+              quotePieces.totalUsage += item.Supplied_AnnualUsage;
           });
           console.log(quotePieces);
           var finished_meters=quotePieces;
@@ -46,7 +46,7 @@ export function quotePrep(prospectID){
     .then(function(finished_meters) {
         console.log("about to send back to server:");
         // console.log(quotePieces);
-        return quotePieces;
+        callback(quotePieces);
     })
 
 }
