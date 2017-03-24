@@ -10,6 +10,7 @@ import routes from './routes';
 import NotFoundPage from './pages/NotFound';
 const bodyParser = require('body-parser');
 import { Field,Control,Form,combineForms } from "react-redux-form";
+import { quotePrep } from './quotePrep';
 
 // initialize the server and configure support for ejs templates
 const app = new Express();
@@ -54,7 +55,6 @@ app.get('/currentRates', (req, res) => {
 });
 
 app.get('/prospects', (req, res) => {
-    // console.log(req.body);
     knex.withSchema('BrokerPortal').select('ProspectID','ProspectEntityName').from('Prospects')
     //where BrokerID in BrokerProspect
     .asCallback(function(err,results) {
@@ -68,6 +68,40 @@ app.get('/prospects', (req, res) => {
           return res.send(prospects);
           }
       });
+});
+
+app.get('/quote', (req, res) => {
+    console.log("in server /quote. Prospect is:");
+    console.log(req.query.prospect);
+    var preppedQuote = quotePrep(req.query.prospect);
+    var quoteID = '';
+    console.log("Prepped quote for insert:");
+    console.log(preppedQuote);
+    // knex.withSchema('BrokerPortal').insert(preppedQuote.quote).into('Quotes').returning('QuoteID')
+    // .asCallback(function(err,results) {
+    //   if (err)    {
+    //       console.log("error inserting Quote");
+    //       res.send({success:false,message:err.message});
+    //       }
+    //   else{
+    //       console.log("Quote inserted successfully");
+    //       quoteID = results[0];
+    //       }
+    //   });
+    //   .then (
+    //       if (quoteID) {
+    //           knex.withSchema('BrokerPortal').insert(preppedQuote.lineitems).into('QuoteLineItems')
+    //           .asCallback(function(err,results) {
+    //             if (err)    {
+    //                 console.log("error inserting Quote");
+    //                 res.send({success:false,message:err.message});
+    //                 }
+    //             else{
+    //                 console.log("Quote line items inserted successfully");
+                    res.send({success:true,message:"Done adding quote line items",quote:preppedQuote});
+    //                 }
+    //             });
+    //       });
 });
 
 app.post("/submitProspect", (req, res) => {
@@ -125,6 +159,7 @@ app.post("/submitMeter", (req, res) => {
         }}
       });
 });
+
 // universal routing and rendering
 app.get('*', (req, res) => {
   match(

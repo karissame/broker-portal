@@ -16,6 +16,27 @@ export function getIDs(){
       })
   }
 }
+export function getQuote(prospect){
+    console.log("in reducer. getting quote items for prospect:");
+    console.log(prospect);
+    console.log('***************************');
+    return function(dispatch) {
+    //in future, make the params in server from session instead of explicit passing.
+    axios.get("/quote", {
+        params: {
+            prospect:prospect
+        }
+    })
+      .then((response) => {
+          console.log("received quote data server. logging");
+          console.log(response.data.quote);
+          dispatch({type: "QUOTE_LOADED", payload: response.data.quote})
+      })
+      .catch((err) => {
+          dispatch({type: "QUOTE_FAILED", payload: err})
+      })
+  }
+}
 
 export function setProspect(id){
     console.log("in reducer. setting prospect");

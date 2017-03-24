@@ -34,10 +34,15 @@ export function postProspectMeter(meter){
       .then((response) => {
           console.log("Received response from server: ",response.data);
           if (response.data.success) {
-              dispatch({type: "METER_LOADED", payload: response.data.ProspectMeterID});
-              dispatch(actions.setSubmitted('prospectMeters', true));
+              console.log("Dispaching METER_LOADED");
+              //after linking table axios post, move below reset into the new .then
+            //   dispatch({type: "METER_LOADED", payload: response.data.prospectID});
+            console.log("in the dbActions now. About to dispatch a form reset");
+            dispatch(actions.reset('prospectMeters'));
+
 
           } else {
+              console.log("insert failed dispatch next");
               dispatch(
                   {type: "INSERT_FAILED", payload: response.data}
               );
@@ -49,10 +54,4 @@ export function postProspectMeter(meter){
           dispatch({type: "PROSPECT_INSERT_FAILED", payload: err})
       })
   }
-}
-export function resetProspectMeter() {
-    return function(dispatch) {
-        console.log("in the dbActions now. About to dispatch a form reset");
-        actions.setInitial('prospectMeters');
-    }
 }

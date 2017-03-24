@@ -13,6 +13,12 @@ export default function(state={quote:[]},action){
             newState = { ...state, progress:newStep};
             break;
         }
+        case "QUOTE_LOADED": {
+            var quote = action.payload;
+            console.log("Quote reducer about to post to quote.quote");
+            newState = { ...state, quote:quote};
+            break;
+        }
     }
     return newState; //returns the new value of the state
 }

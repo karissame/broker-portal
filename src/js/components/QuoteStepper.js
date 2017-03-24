@@ -2,6 +2,7 @@ import React from 'react';
 import { connect} from "react-redux";
 import * as stepper from "../actions/stepperActions";
 import ProspectSelector from "./ProspectSelector";
+import QuoteSummary from "./QuoteSummary";
 import NewProspectForm from "./NewProspectForm";
 import NewProspectMeterForm from "./NewProspectMeterForm";
 
@@ -28,6 +29,13 @@ export default class QuoteStepper extends React.Component {
                 <div className="step">ADD METERS</div>
                 <NewProspectMeterForm />
               </div>
+            );
+        case 2:
+            return (
+                <div id="stepper">
+                  <div className="step">REVIEW QUOTE</div>
+                  <QuoteSummary />
+                 </div>
             );
         default:
             return (

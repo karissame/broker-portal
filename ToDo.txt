@@ -1,0 +1,41 @@
+Show start dates eligible on prospectmeter form once Utility is picked or onMount. Query startdates from cumulative table where createdOn = today. Stuff into select.options on form.
+
+
+Get prospect details query from prospects
+.then get meter details which are linked to prospect (prospectID=prospectID)
+prospect={
+    prospectDetails:{
+        col1:col1,
+        etc
+    },
+    meterDetails:[
+        {
+            col1:col1,
+            etc
+        },
+        {
+            col1:col1,
+            etc
+        },
+    ],
+    totalUsage:0,
+    blendedRate:0,
+}
+prospect.meterDetails.forEach(meter) {
+    Get rates each meter is eligible for: select from cumulative rate table where usage is between thresholds and profile, utility, contract length, match. if that helps.
+    Insert into prospect.meterDetails[meter].InitialMeterRateQuote,
+    insert id of that rate from cumulative table into prospect.meterDetails[meter].InitialMeterRateLineItem
+    prospect.totalUsage += prospect.meterDetails[meter].SuppliedAnnualUsage
+}
+.then meter.annualUsage * rate * (usage/totalusage). add all those for a blended rate on prospect.
+
+Inset quote into 'Quotes'
+insert quotelineitems for each meter.
+
+Query needed items from quote and display in QuoteSummary component
+
+
+
+
+* add select on quote screen to repull quote at various lengths of time.
+* Quotes generated at 24 month hard coded for now
