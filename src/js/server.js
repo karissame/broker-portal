@@ -73,10 +73,12 @@ app.get('/prospects', (req, res) => {
 app.get('/quote', (req, res) => {
     console.log("in server /quote. Prospect is:");
     console.log(req.query.prospect);
-    var preppedQuote = quotePrep(req.query.prospect);
     var quoteID = '';
-    console.log("Prepped quote for insert:");
-    console.log(preppedQuote);
+    quotePrep(req.query.prospect,function(returned) {
+        console.log("Prepped quote for insert:");
+        var preppedQuote = returned;
+        console.log(preppedQuote);
+
     // knex.withSchema('BrokerPortal').insert(preppedQuote.quote).into('Quotes').returning('QuoteID')
     // .asCallback(function(err,results) {
     //   if (err)    {
@@ -102,6 +104,7 @@ app.get('/quote', (req, res) => {
     //                 }
     //             });
     //       });
+    });
 });
 
 app.post("/submitProspect", (req, res) => {

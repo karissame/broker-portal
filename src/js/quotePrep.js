@@ -44,8 +44,8 @@ export function quotePrep(prospectID){
           }
     })
     .then(function(finished_meters) {
-        console.log("about to send this back to server:");
-        console.log(quotePieces);
+        console.log("about to send back to server:");
+        // console.log(quotePieces);
         return quotePieces;
     })
 
